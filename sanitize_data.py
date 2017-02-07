@@ -31,4 +31,4 @@ df_categories_test = df_categories.head(2000)
 concat_frames = [df_conversation, df_categories_test]
 joined_frames = pd.concat(concat_frames, axis=1)
 
-joined_frames.to_csv('./cleaned_data/CLEANED_DATA.csv', sep='\t')
+joined_frames.to_csv('./cleaned_data/CLEANED_DATA.csv', index = False)
