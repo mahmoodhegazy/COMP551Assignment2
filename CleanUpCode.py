@@ -3,7 +3,7 @@
 
 # In[38]:
 
-import pandas as pd 
+import pandas as pd
 import numpy as np
 from pandas import DataFrame, Series
 
@@ -33,7 +33,7 @@ category[:10]
 joined['conversation'][0]
 
 
-# In[43]:
+# In[ ]:
 
 import re
 import nltk
@@ -45,7 +45,7 @@ from __future__ import print_function, unicode_literals
 corpus = []
 
 #Cleaning the texts
-for i in range(0,10):
+for i in range(0,165000):
     notconversation = joined['conversation'][i]
     conversation = re.sub('<.*?>', ' ', notconversation) #removes all <*>
     conversation = re.sub('[^a-zA-Z]', ' ', conversation) #removes all punctuation
@@ -60,9 +60,12 @@ for i in range(0,10):
     corpus.append(conversation)
 
 
-#Stemming (taking the root of the word)
-corpus = pd.DataFrame(corpus)
-corpus
+#Creating Bag Of Words model
+from sklearn.feature_extraction.text import CountVectorizer
+cv = CountVectorizer(max_features=300) #Chooses the top 1500 features
+X = cv.fit_transform(corpus).toarray()
+
+Y = right.iloc[:,1].values
 
 
 # In[ ]:
