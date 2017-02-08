@@ -1,9 +1,8 @@
 from sklearn.feature_extraction.text import CountVectorizer
-cv = CountVectorizer(max_features=1500) #Chooses the top 1500 features
+cv = CountVectorizer(analyzer='word', ngram_range=(1,3), max_features=1500) #Chooses the top 1500 features
 X = cv.fit_transform(corpus).toarray()
 
 y = right.iloc[:,1].values
-
 
 # Splitting the dataset into the Training set and Test set
 from sklearn.cross_validation import train_test_split
@@ -20,4 +19,6 @@ y_pred = classifier.predict(X_test)
 
 # Making the Confusion Matrix
 from sklearn.metrics import confusion_matrix
-cm = confusion_matrix(y_test, y_pred)
+cmnb = confusion_matrix(y_test, y_pred)
+
+print(classifier.score(X_test, y_test))
