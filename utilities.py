@@ -2,6 +2,7 @@ import nltk
 from nltk.corpus import stopwords
 from nltk.stem.porter import PorterStemmer
 from nltk.stem import WordNetLemmatizer
+import numpy as np
 import pandas as pd
 import re
 
@@ -46,9 +47,11 @@ class Utilities():
 
 	@staticmethod
 	def read_input_data():
-		left = pd.read_csv('./train_data/train_input.csv')
-		right = pd.read_csv('./train_data/train_output.csv')
-		return [left, right]
+		training_set_input = pd.read_csv('./train_data/train_input.csv')
+		training_set_output = pd.read_csv('./train_data/train_output.csv')
+		training_set_input_no_header = np.delete(np.array(training_set_input), [0], 1).ravel()
+		training_set_output_no_header = np.delete(np.array(training_set_output), [0], 1).ravel()
+		return [training_set_input_no_header, training_set_output_no_header]
 
 	@staticmethod
 	def stem(conversation):

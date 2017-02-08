@@ -6,23 +6,21 @@ import pandas as pd
 from utilities import Utilities
 
 util = Utilities()
-[left, right] = util.read_input_data()
+[training_set_X, training_set_Y] = util.read_input_data()
 
-frames = [left, right['category']] #create columns id, conversation, category
-joined = pd.concat(frames, axis=1)
-
-corpus = []
-Y = right['category']
-Y = Y[0:100].tolist()
+X = []
+Y = training_set_Y[0:100]
 
 def sanitize_data():
 	for i in range(0,100):
-		conversation_with_tags = joined['conversation'][i]
+		conversation_with_tags = training_set_X[i]
 		conversation = util.remove_tags(conversation_with_tags)
 		conversation = util.remove_punctuation(conversation) 
 		conversation = conversation.lower().split() #sets everything to lowercase and splits on the spaces by default
 		#conversation = util.stem(conversation) #stemming (taking the root of the word)
 		conversation = util.lemmatize(conversation)
-		corpus.append(conversation)
-	return [corpus, Y]
+		X.append(conversation)
+	X = np.array(X)
+	Y = np.array(Y)
+	return X, Y
 
