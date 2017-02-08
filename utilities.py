@@ -46,8 +46,8 @@ class Utilities():
 
 	@staticmethod
 	def read_input_data():
-		left = pd.read_csv('./train/train_input.csv')
-		right = pd.read_csv('./train/train_output.csv')
+		left = pd.read_csv('./train_data/train_input.csv')
+		right = pd.read_csv('./train_data/train_output.csv')
 		return [left, right]
 
 	@staticmethod
