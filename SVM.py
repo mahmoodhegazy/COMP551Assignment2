@@ -17,7 +17,7 @@ from sklearn.feature_extraction.text import TfidfTransformer
 
 cv = CountVectorizer(lowercase=True, analyzer='word', ngram_range=(1,3),max_features=2836998)  #max out the number of features constructed to the number of features the kaggle input can construct 
 df_full_input = pd.read_csv('cleaned_data/full_input_space_forcv.csv')
-df_clean = pd.read_csv('train_data/full_sanitized_data.csv') #clean trainig data set
+df_clean = pd.read_csv('train_data/full_sanitized_train_data.csv') #clean trainig data set
 word_counter = cv.fit_transform(df_full_input.clean_sentence.tolist()) # sparse input (for both training and testing data)
 word_counter_input_test = word_counter[165000:218218] # last 53218 entries are for kaggle testing
 word_counter_input_train = word_counter[0:165000] #take all non-kaggle data for training/testing split
