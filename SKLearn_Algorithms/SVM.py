@@ -16,8 +16,8 @@ from sklearn.feature_extraction.text import TfidfTransformer
 
 
 cv = CountVectorizer(lowercase=True, analyzer='word', ngram_range=(1,3),max_features=2836998)  #max out the number of features constructed to the number of features the kaggle input can construct 
-df_full_input = pd.read_csv('cleaned_data/full_input_space_forcv.csv')
-df_clean = pd.read_csv('train_data/full_sanitized_train_data.csv') #clean trainig data set
+df_full_input = pd.read_csv('../cleaned_data/full_input_space_forcv.csv')
+df_clean = pd.read_csv('../train_data/full_sanitized_train_data.csv') #clean trainig data set
 word_counter = cv.fit_transform(df_full_input.clean_sentence.tolist()) # sparse input (for both training and testing data)
 word_counter_input_test = word_counter[165000:218218] # last 53218 entries are for kaggle testing
 word_counter_input_train = word_counter[0:165000] #take all non-kaggle data for training/testing split
@@ -33,7 +33,7 @@ print(classification_report(Y_test,y_pred)) # gave us 95% on train/test spplit (
 # now get kaggle preictions
 y_kaggle_pred = model.predict(word_counter_input_test)
 to_submit = pd.DataFrame([[i,y_kaggle_pred[i]] for i in range(len(y_kaggle_pred))], columns = ["id","category"]) #follow submission guidelines 
-to_submit.to_csv("submission.csv", index= False) #1st submission :)
+to_submit.to_csv("submission_svm.csv", index= False) #1st submission :)
 
 sns.heatmap(confusion_mat,annot=True) # conf matrix (for report)
 
