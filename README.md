@@ -1,15 +1,36 @@
 # COMP551Assignment2
 Text Classification
 
-### Data sanitization
 
-Main file is: sanitize_data.py
-All **calls** to clean data goes here
+#To run KNN:
 
-### Utilities
+##To run manually implemented KNN:
 
-Main file is: utilities.py
-All **core** of cleaning data goes here
+`python knn.py`
 
-### SKLearn_Algorithms
-All sci-kit learn machine learning algorithms are implemented here: decision_trees, multinomial naive bayes, svm
+##To run scikit KNN:
+
+`cd SKLearn_Algorithms`
+`python KNN_tfidf.py`
+
+
+#To run SVM:
+
+`cd SKLearn_Algorithms`
+
+##To run Linear Kernel SVM:
+
+`python SVM_linear.py`
+
+##To run RBF Kernel SVM:
+
+`python SVM_nonlinear.py`
+
+##To run grid search with linear SVM:
+
+`python SVM_GridSearch.py`
+
+
+
+
+

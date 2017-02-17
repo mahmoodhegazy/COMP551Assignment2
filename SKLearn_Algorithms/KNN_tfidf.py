@@ -36,18 +36,16 @@ x_train_term_freq_inverse_doc = x_train_term_freq_transformer.transform(X_train)
 x_test_term_freq_inverse_doc = x_test_term_freq_transformer.transform(X_test)
 
 
-
-
 kaggle_xtest_term_freq_inverse_doc = kaggle_xtest_term_freq_transformer.transform(word_counter_input_test)
 neigh = KNeighborsClassifier(n_neighbors = 3)
 
 neigh.fit(x_train_term_freq_inverse_doc, Y_train) #train it using our input and out training data
-predictions = model.predict(x_test_term_freq_inverse_doc) #create a prediction for our testing data
+predictions = neigh.predict(x_test_term_freq_inverse_doc) #create a prediction for our testing data
 
 print(classification_report(Y_test,predictions))
-y_kaggle_pred = model.predict(kaggle_xtest_term_freq_inverse_doc)
+y_kaggle_pred = neigh.predict(kaggle_xtest_term_freq_inverse_doc)
 to_submit = pd.DataFrame([[i,y_kaggle_pred[i]] for i in range(len(y_kaggle_pred))], columns = ["id","category"]) #follow submission guidelines 
-to_submit.to_csv("kaggle_prediciton_submissions/submission_5_svm.csv", index= False) #1st submission :)
+to_submit.to_csv("kaggle_prediciton_submissions/submission_knn.csv", index= False) #1st submission :)
 
 confusion_mat = confusion_matrix(Y_test, predictions)
 
