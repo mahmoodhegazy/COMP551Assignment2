@@ -17,6 +17,7 @@ from nltk.stem.porter import PorterStemmer
 from utilities import Utilities
 from sklearn.feature_extraction.text import TfidfTransformer
 from sklearn import svm
+from sklearn.neighbors import KNeighborsClassifier  
 
 #ignore terms that appear in less than 2 docs
 cv = CountVectorizer(lowercase=True, analyzer='word', ngram_range=(1,3),stop_words='english', strip_accents = 'unicode',min_df = 2)
@@ -38,8 +39,9 @@ x_test_term_freq_inverse_doc = x_test_term_freq_transformer.transform(X_test)
 
 
 kaggle_xtest_term_freq_inverse_doc = kaggle_xtest_term_freq_transformer.transform(word_counter_input_test)
-model = svm.LinearSVC(C=10) #create a linear svm model
-model.fit(x_train_term_freq_inverse_doc, Y_train) #train it using our input and out training data
+neigh = KNeighborsClassifier(n_neighbors = 3)
+
+neigh.fit(x_train_term_freq_inverse_doc, Y_train) #train it using our input and out training data
 predictions = model.predict(x_test_term_freq_inverse_doc) #create a prediction for our testing data
 
 print(classification_report(Y_test,predictions))
