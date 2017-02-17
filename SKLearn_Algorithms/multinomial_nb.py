@@ -4,7 +4,7 @@ from sklearn.metrics import confusion_matrix
 from sklearn.naive_bayes import MultinomialNB
 
 def naive_bayes(corpus, categories):
-	cv = CountVectorizer(lowercase=True, analyzer='word', ngram_range=(1,3), max_features=1500)
+	cv = CountVectorizer(lowercase=True, analyzer='word', ngram_range=(1,3))
 	X = cv.fit_transform(corpus).toarray()
 	y = categories.iloc[:,1].values
 	X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.20, random_state = 0)
