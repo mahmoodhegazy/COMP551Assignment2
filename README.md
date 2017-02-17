@@ -3,7 +3,7 @@ Text Classification
 
 #For preprocessing(removing stop words, pucntuations, and lemmatization):
 
-`python utilities.py`
+Use utilities.py functions
 
 #To run KNN:
 
