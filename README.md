@@ -11,6 +11,7 @@ Text Classification
 ##To run scikit KNN:
 
 `cd SKLearn_Algorithms`
+
 `python KNN_tfidf.py`
 
 
