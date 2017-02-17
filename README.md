@@ -1,6 +1,9 @@
 # COMP551Assignment2
 Text Classification
 
+#For preprocessing(removing stop words, pucntuations, and lemmatization):
+
+`python utilities.py`
 
 #To run KNN:
 
